@@ -6,11 +6,12 @@ import cors from "cors";
 import productRoutes from "./routes/productRoutes.js"
 import { sql } from "./config/db.js";
 
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+
 app.use(helmet()); // Security middleware
 app.use(morgan("dev")); //Log the requests
 app.use(cors());
