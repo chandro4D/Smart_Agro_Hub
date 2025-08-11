@@ -33,8 +33,38 @@ export const createProduct = async (req, res) => {
 
 };
 
-export const getProduct = async (req, res) => { };
+export const getProduct = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const product = await sql`
+        SELECT * FROM products WHERE id = ${id}
+        `;
+        res.status(200).json({ success: true, data: product[0] });
+    } catch (error) {
+        console.log("Error in getProduct Function", error);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+};
 
-export const updateProduct = async (req, res) => { };
+export const updateProduct = async (req, res) => {
+    const { id } = req.params;
+    const {name,price,image} = req.body;
+    try {
+        const updatedProduct = await sql`
+            UPDATE products
+            SET name = ${name}, price = ${price}, image = ${image}
+            WHERE id = ${id}
+            RETURNING *
+        `;
+        if (updatedProduct.length === 0) {
+            res.status(404).json({ success: false, message: "Product not found" });
+        } else {
+            res.status(200).json({ success: true, data: updatedProduct[0] });
+        }
+    } catch (error) {
+        console.log("Error in updateProduct Function", error);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+ };
 
 export const deleteProduct = async (req, res) => { };
