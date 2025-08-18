@@ -1,5 +1,5 @@
 import { DollarSignIcon, ImageIcon, Package2Icon, PlusCircleIcon } from "lucide-react";
-import { useProductStore } from "../store/useProductStore.js";
+import { useProductStore } from "../store/useProductStore";
 
 function AddProductModal() {
   const { addProduct, formData, setFormData, loading } = useProductStore();
@@ -9,9 +9,8 @@ function AddProductModal() {
       <div className="modal-box">
         {/* CLOSE BUTTON */}
         <button
-          type="button"
+          formMethod="dialog"
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-          onClick={() => document.getElementById("add_product_modal").close()}
         >
           X
         </button>
@@ -19,6 +18,7 @@ function AddProductModal() {
         {/* MODAL HEADER */}
         <h3 className="font-bold text-xl mb-8">Add New Product</h3>
 
+        {/* MAIN FORM */}
         <form onSubmit={addProduct} className="space-y-6">
           <div className="grid gap-6">
             {/* PRODUCT NAME INPUT */}
@@ -83,11 +83,7 @@ function AddProductModal() {
 
           {/* MODAL ACTIONS */}
           <div className="modal-action">
-            <button
-              type="button"
-              className="btn btn-ghost"
-              onClick={() => document.getElementById("add_product_modal").close()}
-            >
+            <button formMethod="dialog" type="button" className="btn btn-ghost">
               Cancel
             </button>
             <button

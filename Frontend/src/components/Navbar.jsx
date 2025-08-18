@@ -1,7 +1,7 @@
 import { Link, useResolvedPath } from "react-router-dom";
 import { ShoppingBagIcon, ShoppingCartIcon } from "lucide-react";
-import ThemeSelector from "./ThemeSelector.jsx";
-import { useProductStore } from "../store/useProductStore.js";
+import ThemeSelector from "./ThemeSelector";
+import { useProductStore } from "../store/useProductStore";
 
 function Navbar() {
   const { pathname } = useResolvedPath();
@@ -22,7 +22,7 @@ function Navbar() {
                   className="font-semibold font-mono tracking-widest text-2xl 
                     bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
                 >
-                  POSGRESTORE
+                  SmartAgroHub
                 </span>
               </div>
             </Link>
