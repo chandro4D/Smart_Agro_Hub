@@ -1,7 +1,7 @@
 import { Link, useResolvedPath } from "react-router-dom";
 import { ShoppingBagIcon, ShoppingCartIcon } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
-import { useProductStore } from "../store/useProductStore";
+import { useProductStore } from "../store/useProductStore.js";
 
 function Navbar() {
   const { pathname } = useResolvedPath();
@@ -29,7 +29,18 @@ function Navbar() {
           </div>
 
           {/* RIGHT SECTION */}
+          <div>
+            <h3 className=" mt-3 mr-5 font-semibold font-mono tracking-widest text-2xl 
+                    bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"><Link to="/">Home</Link></h3>
+            <h3 className="mt-3 mr-5 font-semibold font-mono tracking-widest text-2xl 
+                    bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"><Link to="/shop">OurShop</Link></h3>
+            <h3 className="mt-3 mr-5 font-semibold font-mono tracking-widest text-2xl 
+                    bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"><Link to="/login">LogIn</Link></h3>
+            <h3 className="mt-3 mr-5 font-semibold font-mono tracking-widest text-2xl 
+                    bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"><Link to="/signup">SignUp</Link></h3>
+          </div>
           <div className="flex items-center gap-4">
+
             <ThemeSelector />
 
             {isHomePage && (

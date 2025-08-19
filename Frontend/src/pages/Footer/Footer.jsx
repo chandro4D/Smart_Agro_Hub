@@ -2,16 +2,16 @@
 const Footer = () => {
     return (
         <div >
-            <footer className="footer text-white  bg-sky-500  h-[400px]   ">
+            <footer className="footer text-white  bg-slate-500  h-[350px]   ">
 
                 <div className="flex  ">
-                    <div className="w-[200px] mr-[250px] ml-[200px]  mt-20 " >
-                        <img className="mr-2 ml-16 w-[80px] h-[80px] rounded-full" src="../../../../public/default.png" alt="" />
+                    <div className="w-[200px] mr-[250px] ml-[200px]  mt-10 " >
+                        <img className="mr-2 ml-16 w-[80px] h-[80px] rounded-full" src="/frontend/public/—Pngtree—star icon design_14505599.png" alt="" />
                         <br />
                         <p className="text-xl text-center underline" >support</p>
                         <p className="text-xl text-center" >+880 17 59 62 64 70</p>
                       
-                        <p className="text-xl text-center">support@healthhaven.com</p>
+                        <p className="text-xl  "><i>supportSmartAgroHub@.com</i></p>
                         <br />
                         <p className="text-xl text-center underline">social</p>
                        
@@ -23,7 +23,7 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    <div className="text-xl w-[200px] mr-[200px] mb-32 text-center mt-24">
+                    <div className="text-xl w-[200px] mr-[200px] mb-32 text-center mt-20">
                         <p className="mb-3">About Us</p>
                        
                         <p className="mb-3">Terms and Conditions</p>
@@ -34,7 +34,7 @@ const Footer = () => {
                        
                         <p>Disclaimer</p>
                     </div>
-                    <div className="text-xl w-[200px] mb-32 text-center mt-24">
+                    <div className="text-xl w-[200px] mb-32 text-center mt-20">
                         <p className="mb-3">Buy Medicines Online</p>
                         <p className="mb-3">Top 10 Pharmaceutical</p>
                         <p className="mb-3">Contact us</p>
@@ -48,7 +48,7 @@ const Footer = () => {
             </footer>
             <footer className="footer footer-center p-4 bg-base-300 text-base-content">
                 <aside>
-                    <p>Copyright © 2024 - All right reserved by HealthHaven Industries Ltd</p>
+                    <p>Copyright © 2024 - All right reserved by <i>SmartAgroHub</i> Industries Ltd</p>
                 </aside>
             </footer>
         </div>
