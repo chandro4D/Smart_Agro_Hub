@@ -17,10 +17,11 @@ export const useProductStore = create((set, get) => ({
     name: "",
     price: "",
     image: "",
+    category: "",
   },
 
   setFormData: (formData) => set({ formData }),
-  resetForm: () => set({ formData: { name: "", price: "", image: "" } }),
+  resetForm: () => set({ formData: { name: "", price: "", image: "", category: "" } }),
 
   addProduct: async (e) => {
     e.preventDefault();
@@ -53,7 +54,54 @@ export const useProductStore = create((set, get) => ({
       set({ loading: false });
     }
   },
-
+  fetchInsecticides: async () => {
+    set({ loading: true });
+    try {
+      const response = await axios.get(`${BASE_URL}/api/products/insecticides`);
+      set({ products: response.data.data, error: null });
+    } catch (err) {
+      if (err.status == 429) set({ error: "Rate limit exceeded", products: [] });
+      else set({ error: "Something went wrong", products: [] });
+    } finally {
+      set({ loading: false });
+    }
+  },
+  fetchSeeds: async () => {
+    set({ loading: true });
+    try {
+      const response = await axios.get(`${BASE_URL}/api/products/seeds`);
+      set({ products: response.data.data, error: null });
+    } catch (err) {
+      if (err.status == 429) set({ error: "Rate limit exceeded", products: [] });
+      else set({ error: "Something went wrong", products: [] });
+    } finally {
+      set({ loading: false });
+    }
+  },
+  fetchTools: async () => {
+    set({ loading: true });
+    try {
+      const response = await axios.get(`${BASE_URL}/api/products/tools`);
+      set({ products: response.data.data, error: null });
+    } catch (err) {
+      if (err.status == 429) set({ error: "Rate limit exceeded", products: [] });
+      else set({ error: "Something went wrong", products: [] });
+    } finally {
+      set({ loading: false });
+    }
+  },
+  fetchFeed: async () => {
+    set({ loading: true });
+    try {
+      const response = await axios.get(`${BASE_URL}/api/products/feed`);
+      set({ products: response.data.data, error: null });
+    } catch (err) {
+      if (err.status == 429) set({ error: "Rate limit exceeded", products: [] });
+      else set({ error: "Something went wrong", products: [] });
+    } finally {
+      set({ loading: false });
+    }
+  },
   deleteProduct: async (id) => {
     console.log("deleteProduct function called", id);
     set({ loading: true });
@@ -100,3 +148,5 @@ export const useProductStore = create((set, get) => ({
     }
   },
 }));
+
+

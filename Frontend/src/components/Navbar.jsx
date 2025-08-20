@@ -1,5 +1,5 @@
 import { Link, useResolvedPath } from "react-router-dom";
-import { ShoppingBagIcon, ShoppingCartIcon } from "lucide-react";
+import { LogOutIcon, ShoppingBagIcon, ShoppingCartIcon, UserIcon } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 import { useProductStore } from "../store/useProductStore.js";
 
@@ -30,13 +30,13 @@ function Navbar() {
 
           {/* RIGHT SECTION */}
           <div>
-            <h3 className=" mt-3 mr-5 font-semibold font-mono tracking-widest text-2xl 
+            <h3 className="btn btn-neutral btn-dash mt-3 mr-5 font-semibold font-mono tracking-widest text-2xl 
                     bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"><Link to="/">Home</Link></h3>
-            <h3 className="mt-3 mr-5 font-semibold font-mono tracking-widest text-2xl 
+            <h3 className="btn btn-neutral btn-dash mt-3 mr-5 font-semibold font-mono tracking-widest text-2xl 
                     bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"><Link to="/shop">OurShop</Link></h3>
-            <h3 className="mt-3 mr-5 font-semibold font-mono tracking-widest text-2xl 
+            <h3 className="btn btn-neutral btn-dash mt-3 mr-5 font-semibold font-mono tracking-widest text-2xl 
                     bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"><Link to="/login">LogIn</Link></h3>
-            <h3 className="mt-3 mr-5 font-semibold font-mono tracking-widest text-2xl 
+            <h3 className="btn btn-neutral btn-dash mt-3 mr-5 font-semibold font-mono tracking-widest text-2xl 
                     bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"><Link to="/signup">SignUp</Link></h3>
           </div>
           <div className="flex items-center gap-4">
@@ -53,6 +53,16 @@ function Navbar() {
                 </div>
               </div>
             )}
+          </div>
+          <div className=" tooltip tooltip-bottom mr-5" data-tip="Name Or Email"  >
+            <div className="dropdown dropdown-bottom">
+              <div tabIndex={0} className=" m-1"><UserIcon className="text-2xl rounded-full "/></div>
+              <ul tabIndex={0} className="dropdown-content text-black z-[1] menu p-6 shadow bg-gradient-to-r from-cyan-500 to-blue-500 rounded-box w-72">
+                <Link to="/updateProfile"><li className="font-semibold"><a>Update Profile</a></li></Link>
+                <Link to='/dashboard'><li className="font-semibold"><a>Dashboard</a></li></Link>
+                <li><a><button  className="btn bg-white w-[120px] font-bold  text-red-600 text-base  ">Logout<LogOutIcon className="text-2xl" /></button></a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

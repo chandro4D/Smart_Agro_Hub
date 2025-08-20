@@ -3,18 +3,18 @@ import { useProductStore } from "../../store/useProductStore.js";
 import AllProductCard from "../../components/AllProductCard.jsx";
 import Footer from "../Footer/Footer.jsx";
 
-function OurShop() {
-  const { products, loading, fetchProducts } = useProductStore();
+function Insecticides() {
+  const { products, loading, fetchInsecticides } = useProductStore();
 
   useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
+    fetchInsecticides();
+  }, [fetchInsecticides]);
 
   return (
     <div>
       <div>
         <div>
-          <h1 className='text-center text-sky-500 text-4xl font-bold pt-20 mb-10'>SEE ALL PRODUCTS HERE</h1>
+          <h1 className='text-center text-sky-500 text-4xl font-bold pt-20 mb-10'>SEE ALL INSECTICIDES HERE</h1>
         </div>
         {loading ? (
           <div className="flex justify-center items-center h-64">
@@ -35,4 +35,4 @@ function OurShop() {
     </div>
   );
 }
-export default OurShop;
+export default Insecticides;

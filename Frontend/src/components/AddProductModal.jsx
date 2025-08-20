@@ -1,4 +1,4 @@
-import { DollarSignIcon, ImageIcon, Package2Icon, PlusCircleIcon } from "lucide-react";
+import { DollarSignIcon, ImageIcon, Package2Icon, PlusCircleIcon, TagIcon } from "lucide-react";
 import { useProductStore } from "../store/useProductStore";
 
 function AddProductModal() {
@@ -79,6 +79,25 @@ function AddProductModal() {
                 />
               </div>
             </div>
+
+            {/* PRODUCT CATEGORY */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-base font-medium">Product Category</span>
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-base-content/50">
+                  <TagIcon className="size-5" />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter product category"
+                  className="input input-bordered w-full pl-10 py-3 focus:input-primary transition-colors duration-200"
+                  value={formData.category}
+                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                />
+              </div>
+            </div>
           </div>
 
           {/* MODAL ACTIONS */}
@@ -89,7 +108,13 @@ function AddProductModal() {
             <button
               type="submit"
               className="btn btn-primary min-w-[120px]"
-              disabled={!formData.name || !formData.price || !formData.image || loading}
+              disabled={
+                !formData.name ||
+                !formData.price ||
+                !formData.image ||
+                !formData.category ||
+                loading
+              }
             >
               {loading ? (
                 <span className="loading loading-spinner loading-sm" />
@@ -111,4 +136,6 @@ function AddProductModal() {
     </dialog>
   );
 }
+
 export default AddProductModal;
+// This code defines a modal component for adding new products to the inventory.

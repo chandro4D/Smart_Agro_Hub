@@ -35,8 +35,8 @@ const Footer = () => {
                         <p>Disclaimer</p>
                     </div>
                     <div className="text-xl w-[200px] mb-32 text-center mt-20">
-                        <p className="mb-3">Buy Medicines Online</p>
-                        <p className="mb-3">Top 10 Pharmaceutical</p>
+                        <p className="mb-3">Buy Products Online</p>
+                        <p className="mb-3">Top 10 Products</p>
                         <p className="mb-3">Contact us</p>
                         <p className="mb-3">Blogs</p>
                         <p>FAQ</p>
