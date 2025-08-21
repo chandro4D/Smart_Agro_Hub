@@ -51,7 +51,8 @@ export const getProduct = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
-// INSECTICIDE products get 
+
+// INSECTICIDE products get
 export const getInsecticides = async (req, res) => {
   try {
     const products = await sql`
@@ -64,6 +65,7 @@ export const getInsecticides = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
 // SEED products get
 export const getSeeds = async (req, res) => {
   try {
@@ -91,6 +93,7 @@ export const getTools = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
 // Feed products get
 export const getFeed = async (req, res) => {
   try {

@@ -68,6 +68,7 @@ if (process.env.NODE_ENV === "production") {
 
 async function initDB() {
   try {
+    // Create products table
     await sql`
       CREATE TABLE IF NOT EXISTS products (
         id SERIAL PRIMARY KEY,
@@ -76,6 +77,18 @@ async function initDB() {
         price DECIMAL(10, 2) NOT NULL,
         category VARCHAR(255) NOT NULL,
         create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `;
+    // Create users table
+    await sql`
+      CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        email VARCHAR(150) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        photo_url TEXT,
+        user_role VARCHAR(50) DEFAULT 'user',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `;
 
