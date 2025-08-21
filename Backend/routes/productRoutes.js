@@ -9,7 +9,8 @@ import {
   getSeeds,
   getTools,
   getFeed,
-  createUser
+  createUser,
+  login
 } from "../controllers/productController.js";
 
 const router = expres.Router();
@@ -24,5 +25,6 @@ router.post("/", createProduct);
 router.put("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
 router.post("/users", createUser);
+router.post("/login", login);
 
 export default router;

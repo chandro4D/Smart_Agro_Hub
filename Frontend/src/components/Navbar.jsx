@@ -56,8 +56,10 @@ function Navbar() {
           </div>
           <div className=" tooltip tooltip-bottom mr-5" data-tip="Name Or Email"  >
             <div className="dropdown dropdown-bottom">
-              <div tabIndex={0} className=" m-1"><UserIcon className="text-2xl rounded-full " /></div>
-              <ul tabIndex={0} className="dropdown-content text-black z-[1] menu p-6 shadow bg-gradient-to-r from-cyan-500 to-blue-500 rounded-box w-72">
+              <div tabIndex={0} className=" m-1">
+                <UserIcon className="text-5xl rounded-full " />
+              </div>
+              <ul tabIndex={5} className="dropdown-content text-black w-44 z-[1] menu p-4  shadow bg-gradient-to-r from-cyan-500 to-blue-500 rounded-box ">
                 <li className="font-semibold">
                   <Link to="/updateProfile">Update Profile</Link>
                 </li>

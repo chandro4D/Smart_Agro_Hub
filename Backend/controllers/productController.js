@@ -16,6 +16,7 @@ export const getProducts = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
 // Create New User
 export const createUser = async (req, res) => {
   const { name, email, password, photo_url, user_role } = req.body;
@@ -38,6 +39,50 @@ export const createUser = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
+
+// For User LogIn
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ success: false, message: "Email and password are required" });
+  }
+
+  try {
+    // find user by email
+    const user = await sql`
+      SELECT * FROM users WHERE email = ${email}
+    `;
+
+    if (!user[0]) {
+      return res.status(400).json({ success: false, message: "Invalid email or password" });
+    }
+
+    // compare password
+    const isMatch = await bcrypt.compare(password, user[0].password);
+    if (!isMatch) {
+      return res.status(400).json({ success: false, message: "Invalid email or password" });
+    }
+
+    // login successful
+    res.status(200).json({
+      success: true,
+      message: "Login successful",
+      user: {
+        id: user[0].id,
+        name: user[0].name,
+        email: user[0].email,
+        photo_url: user[0].photo_url,
+        user_role: user[0].user_role,
+      },
+    });
+  } catch (error) {
+    console.log("Error in loginUser function", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};
+
 
 // Create New Product
 export const createProduct = async (req, res) => {
