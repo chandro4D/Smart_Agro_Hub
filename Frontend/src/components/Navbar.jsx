@@ -56,12 +56,21 @@ function Navbar() {
           </div>
           <div className=" tooltip tooltip-bottom mr-5" data-tip="Name Or Email"  >
             <div className="dropdown dropdown-bottom">
-              <div tabIndex={0} className=" m-1"><UserIcon className="text-2xl rounded-full "/></div>
+              <div tabIndex={0} className=" m-1"><UserIcon className="text-2xl rounded-full " /></div>
               <ul tabIndex={0} className="dropdown-content text-black z-[1] menu p-6 shadow bg-gradient-to-r from-cyan-500 to-blue-500 rounded-box w-72">
-                <Link to="/updateProfile"><li className="font-semibold"><a>Update Profile</a></li></Link>
-                <Link to='/dashboard'><li className="font-semibold"><a>Dashboard</a></li></Link>
-                <li><a><button  className="btn bg-white w-[120px] font-bold  text-red-600 text-base  ">Logout<LogOutIcon className="text-2xl" /></button></a></li>
+                <li className="font-semibold">
+                  <Link to="/updateProfile">Update Profile</Link>
+                </li>
+                <li className="font-semibold">
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <li>
+                  <button className="btn bg-white w-[120px] font-bold text-red-600 text-base">
+                    Logout <LogOutIcon className="text-2xl" />
+                  </button>
+                </li>
               </ul>
+
             </div>
           </div>
         </div>

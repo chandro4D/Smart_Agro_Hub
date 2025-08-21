@@ -1,4 +1,6 @@
 import { sql } from "../config/db.js";
+import express from "express";
+import bcrypt from "bcrypt";
 
 export const getProducts = async (req, res) => {
   try {
@@ -14,7 +16,30 @@ export const getProducts = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+// Create New User
+export const createUser = async (req, res) => {
+  const { name, email, password, photo_url, user_role } = req.body;
 
+  if (!name || !email || !password || !photo_url || !user_role) {
+    return res.status(400).json({ success: false, message: "All fields are required" });
+  }
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = await sql`
+      INSERT INTO users (name, email, password, photo_url, user_role)
+      VALUES (${name}, ${email}, ${hashedPassword}, ${photo_url}, ${user_role})
+      RETURNING *
+    `;
+
+    res.status(201).json({ success: true, data: newUser[0] });
+  } catch (error) {
+    console.log("Error in createUser function", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};
+
+// Create New Product
 export const createProduct = async (req, res) => {
   const { name, price, image, category } = req.body;
 

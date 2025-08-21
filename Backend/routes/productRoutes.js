@@ -8,7 +8,8 @@ import {
   getInsecticides,
   getSeeds,
   getTools,
-  getFeed
+  getFeed,
+  createUser
 } from "../controllers/productController.js";
 
 const router = expres.Router();
@@ -22,5 +23,6 @@ router.get("/:id", getProduct);
 router.post("/", createProduct);
 router.put("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
+router.post("/users", createUser);
 
 export default router;
