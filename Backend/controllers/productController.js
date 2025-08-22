@@ -1,6 +1,8 @@
 import { sql } from "../config/db.js";
 import express from "express";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+
 
 export const getProducts = async (req, res) => {
   try {
@@ -9,7 +11,7 @@ export const getProducts = async (req, res) => {
       ORDER BY create_at DESC
     `;
 
-    console.log("fetched products", products);
+    console.log("fetched all products successfully");
     res.status(200).json({ success: true, data: products });
   } catch (error) {
     console.log("Error in getProducts function", error);
@@ -64,11 +66,18 @@ export const login = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ success: false, message: "Invalid email or password" });
     }
+    // 3. Create JWT (SECRET should be in your .env)
+    const token = jwt.sign(
+      { id: user[0].id, email: user[0].email },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
 
     // login successful
     res.status(200).json({
       success: true,
       message: "Login successful",
+      token,
       user: {
         id: user[0].id,
         name: user[0].name,
@@ -77,6 +86,10 @@ export const login = async (req, res) => {
         user_role: user[0].user_role,
       },
     });
+
+
+
+
   } catch (error) {
     console.log("Error in loginUser function", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });

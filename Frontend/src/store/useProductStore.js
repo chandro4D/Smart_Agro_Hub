@@ -54,6 +54,7 @@ export const useProductStore = create((set, get) => ({
       set({ loading: false });
     }
   },
+
   fetchInsecticides: async () => {
     set({ loading: true });
     try {
@@ -78,6 +79,7 @@ export const useProductStore = create((set, get) => ({
       set({ loading: false });
     }
   },
+
   fetchTools: async () => {
     set({ loading: true });
     try {
@@ -90,6 +92,7 @@ export const useProductStore = create((set, get) => ({
       set({ loading: false });
     }
   },
+  
   fetchFeed: async () => {
     set({ loading: true });
     try {

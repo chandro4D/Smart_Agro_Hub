@@ -2,12 +2,26 @@ import { Link, useResolvedPath } from "react-router-dom";
 import { LogOutIcon, ShoppingBagIcon, ShoppingCartIcon, UserIcon } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 import { useProductStore } from "../store/useProductStore.js";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 function Navbar() {
   const { pathname } = useResolvedPath();
   const isHomePage = pathname === "/";
-
+  const navigate = useNavigate();
   const { products } = useProductStore();
+
+  // Logout function
+  const handleLogout = () => {
+    // 1. Remove token and user info
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    toast.success("Logged out successfully!");
+
+    setTimeout(() => navigate("/login"), 1000);
+
+  };
 
   return (
     <div className="bg-base-100/80 backdrop-blur-lg border-b border-base-content/10 sticky top-0 z-50">
@@ -67,7 +81,7 @@ function Navbar() {
                   <Link to="/dashboard">Dashboard</Link>
                 </li>
                 <li>
-                  <button className="btn bg-white w-[120px] font-bold text-red-600 text-base">
+                  <button onClick={handleLogout} className="btn bg-white w-[120px] font-bold text-red-600 text-base">
                     Logout <LogOutIcon className="text-2xl" />
                   </button>
                 </li>

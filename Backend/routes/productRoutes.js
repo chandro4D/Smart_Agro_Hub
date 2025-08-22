@@ -1,4 +1,4 @@
-import expres from "express";
+import express from "express";
 import {
   createProduct,
   deleteProduct,
@@ -11,10 +11,13 @@ import {
   getFeed,
   createUser,
   login
-} from "../controllers/productController.js";
+} from "../controllers/productController.js"; // ✅ remove protect from here
 
-const router = expres.Router();
+import { protect } from "../middleware/authMiddleware.js"; // ✅ keep this one
 
+const router = express.Router();
+
+// Public routes
 router.get("/", getProducts);
 router.get("/insecticides", getInsecticides);
 router.get("/seeds", getSeeds);
@@ -26,5 +29,10 @@ router.put("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
 router.post("/users", createUser);
 router.post("/login", login);
+
+// Protected route
+router.get("/protected", protect, (req, res) => {
+  res.json({ message: `Hello ${req.user.email}, you are authenticated!` });
+});
 
 export default router;

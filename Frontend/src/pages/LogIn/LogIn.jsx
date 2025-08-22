@@ -2,8 +2,7 @@ import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast,ToastContainer } from "react-hot-toast";
 
 const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:3000" : "";
 
@@ -37,7 +36,7 @@ const LogIn = () => {
       localStorage.setItem("user", JSON.stringify(data.user));
 
       toast.success("Login successful!");
-      setTimeout(() => navigate("/"), 1500);
+      setTimeout(() => navigate("/"), 1000);
     } catch (err) {
       console.error(err);
       toast.error("Server error");
