@@ -1,13 +1,13 @@
 import { PackageIcon, PlusCircleIcon, RefreshCwIcon } from "lucide-react";
-import ProductCard from "../../components/ProductCard.jsx";
-import AddProductModal from "../../components/AddProductModal";
-import { useProductStore } from "../../store/useProductStore";
+import ProductCard from "../../../components/ProductCard.jsx";
+import AddProductModal from "../../../components/AddProductModal.jsx";
+import { useProductStore } from "../../../store/useProductStore.js";
 
-const Dashboard = () => {
+const AdminDashboard = () => {
     const { products, loading, error, fetchProducts } = useProductStore();
     return (
 
-        <main className="max-w-6xl mx-auto px-4 py-8 ">
+      <main className="max-w-6xl mx-auto px-4 py-8 ">
             <div className="flex justify-between items-center mb-8">
                 <button
                     className="btn btn-primary"
@@ -57,4 +57,4 @@ const Dashboard = () => {
 
 };
 
-export default Dashboard;
+export default AdminDashboard;

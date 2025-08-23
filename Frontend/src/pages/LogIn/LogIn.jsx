@@ -2,11 +2,11 @@ import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { toast,ToastContainer } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:3000" : "";
 
-const LogIn = () => {
+const LogIn = ({ setUser }) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -32,9 +32,10 @@ const LogIn = () => {
         return toast.error(data.message || "Login failed");
       }
 
-      // Save user info to localStorage (optional)
+      // Save user info and token to localStorage (optional)
+      localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
-
+      setUser(data.user);
       toast.success("Login successful!");
       setTimeout(() => navigate("/"), 1000);
     } catch (err) {
@@ -45,7 +46,7 @@ const LogIn = () => {
 
   return (
     <div className="pt-10 pb-5">
-      <ToastContainer position="top-center" autoClose={2000} />
+      
       <div className="lg:w-[500px] sm:w-[350px] lg:h-[600px] sm:h-[500px] bg-lime-100 lg:ml-[500px] sm:ml-0 mb-10 rounded-xl">
         <div className="pt-12">
           <h2 className="text-center text-2xl font-bold text-pink-400 mb-2">

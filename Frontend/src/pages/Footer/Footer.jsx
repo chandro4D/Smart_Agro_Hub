@@ -1,3 +1,4 @@
+import { UserIcon } from "lucide-react";
 
 const Footer = () => {
     return (
@@ -6,7 +7,7 @@ const Footer = () => {
 
                 <div className="flex  ">
                     <div className="w-[200px] mr-[250px] ml-[200px]  mt-10 " >
-                        <img className="mr-2 ml-16 w-[80px] h-[80px] rounded-full" src="/frontend/public/—Pngtree—star icon design_14505599.png" alt="" />
+                        <UserIcon className="text-4xl rounded-full mr-2 ml-16 w-[80px] h-[80px] " />
                         <br />
                         <p className="text-xl text-center underline" >support</p>
                         <p className="text-xl text-center" >+880 17 59 62 64 70</p>

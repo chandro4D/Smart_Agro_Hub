@@ -16,3 +16,12 @@ export const protect = (req, res, next) => {
     return res.status(401).json({ message: "Token invalid or expired" });
   }
 };
+// Verify Role middleware
+export const verifyRole = (roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.user_role)) {
+      return res.status(403).json({ message: "Access denied: insufficient role" });
+    }
+    next();
+  };
+};
