@@ -3,7 +3,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-
+//For Get All Products
 export const getProducts = async (req, res) => {
   try {
     const products = await sql`
@@ -120,6 +120,7 @@ export const createProduct = async (req, res) => {
   }
 };
 
+//For Get Single Product
 export const getProduct = async (req, res) => {
   const { id } = req.params;
 
@@ -191,6 +192,7 @@ export const getFeed = async (req, res) => {
   }
 };
 
+//For Update product
 export const updateProduct = async (req, res) => {
   const { id } = req.params;
   const { name, price, image, category } = req.body;
@@ -217,6 +219,7 @@ export const updateProduct = async (req, res) => {
   }
 };
 
+// For Delete Products
 export const deleteProduct = async (req, res) => {
   const { id } = req.params;
 
@@ -238,3 +241,63 @@ export const deleteProduct = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
+// For Create Cart Item
+export const createCartItem = async (req, res) => {
+  const { user_id, product_id, quantity } = req.body;
+
+  if (!user_id || !product_id || !quantity) {
+    return res.status(400).json({ success: false, message: "All fields are required" });
+  }
+
+  try {
+    const newCartItem = await sql`
+      INSERT INTO cart (user_id, product_id, quantity)
+      VALUES (${user_id}, ${product_id}, ${quantity})
+      ON CONFLICT (user_id, product_id)
+      DO UPDATE SET quantity = cart.quantity + EXCLUDED.quantity
+      RETURNING *
+    `;
+
+    res.status(201).json({ success: true, data: newCartItem[0] });
+  } catch (error) {
+    console.error("Error in createCartItem function", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};
+
+// For Get All Cart Items of a Single User
+export const getUserCartItems = async (req, res) => {
+  const { user_id } = req.params; // assuming you're passing user_id in URL params
+
+  if (!user_id) {
+    return res.status(400).json({ success: false, message: "User ID is required" });
+  }
+
+  try {
+    const cartItems = await sql`
+      SELECT 
+        c.id AS cart_id, 
+        c.user_id, 
+        c.product_id, 
+        c.quantity,
+        p.name AS product_name, 
+        p.price AS product_price,
+        (p.price * c.quantity) AS total_price
+      FROM cart c
+      JOIN products p ON c.product_id = p.id
+      WHERE c.user_id = ${user_id}
+    `;
+
+    if (cartItems.length === 0) {
+      return res.status(404).json({ success: false, message: "No cart items found" });
+    }
+
+    res.status(200).json({ success: true, data: cartItems });
+  } catch (error) {
+    console.error("Error in getUserCartItems function", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};
+
+

@@ -12,6 +12,11 @@ export const useProductStore = create((set, get) => ({
   error: null,
   currentProduct: null,
 
+  // CART STATE
+  cart: [],
+  cartLoading: false,
+  cartError: null,
+
   // form state
   formData: {
     name: "",
@@ -22,6 +27,50 @@ export const useProductStore = create((set, get) => ({
 
   setFormData: (formData) => set({ formData }),
   resetForm: () => set({ formData: { name: "", price: "", image: "", category: "" } }),
+
+  // add item to cart
+  addToCart: async ({ user_id, product_id, quantity = 1 }) => {
+    set({ cartLoading: true });
+    try {
+       await axios.post(`${BASE_URL}/api/products/cart`, { user_id, product_id, quantity });
+      // optionally refetch cart or update locally
+      await get().fetchCart(user_id);
+      toast.success("Item added to cart");
+    } catch (err) {
+      console.error(err);
+      toast.error(err.response?.data?.message || "Failed to add to cart");
+    } finally {
+      set({ cartLoading: false });
+    }
+  },
+  // fetch all cart items for a user
+  fetchCart: async (user_id) => {
+    set({ cartLoading: true });
+    try {
+      const res = await axios.get(`${BASE_URL}/api/products/cart/${user_id}`);
+      set({ cart: res.data.data, cartError: null });
+    } catch (err) {
+      console.error(err);
+      set({ cartError: "Failed to fetch cart", cart: [] });
+    } finally {
+      set({ cartLoading: false });
+    }
+  },
+    
+  // remove item from cart
+  removeCartItem: async ({ user_id, product_id }) => {
+    set({ cartLoading: true });
+    try {
+      await axios.delete(`${BASE_URL}/api/products/cart`, { data: { user_id, product_id } });
+      await get().fetchCart(user_id);
+      toast.success("Item removed from cart");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to remove item");
+    } finally {
+      set({ cartLoading: false });
+    }
+  },
 
   addProduct: async (e) => {
     e.preventDefault();

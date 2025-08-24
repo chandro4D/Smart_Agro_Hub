@@ -93,6 +93,17 @@ async function initDB() {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `;
+    // Create cart table
+    await sql`
+      CREATE TABLE IF NOT EXISTS cart (
+        id SERIAL PRIMARY KEY,
+        user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        product_id INT NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+        quantity INT NOT NULL DEFAULT 1,
+        added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        UNIQUE (user_id, product_id) -- Prevent duplicate product entries for same user
+      )
+    `;
 
     console.log("Database initialized successfully");
   } catch (error) {

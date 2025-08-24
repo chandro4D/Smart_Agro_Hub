@@ -4,13 +4,21 @@ import ThemeSelector from "./ThemeSelector";
 import { useProductStore } from "../store/useProductStore.js";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-
+import { useEffect } from "react";
 
 function Navbar({ user, setUser }) {
   const { pathname } = useResolvedPath();
   const isHomePage = pathname === "/";
   const navigate = useNavigate();
-  const { products } = useProductStore();
+  const { cart, fetchCart } = useProductStore();
+  
+  // Fetch cart when user is logged in
+  useEffect(() => {
+    if (user?.id) {
+      fetchCart(user.id);
+    }
+  }, [user, fetchCart]);
+
 
   // Logout
   const handleLogout = () => {
@@ -30,7 +38,7 @@ function Navbar({ user, setUser }) {
             <Link to="/" className="hover:opacity-80 transition-opacity">
               <div className="flex items-center gap-2">
                 <ShoppingCartIcon className="size-9 text-primary" />
-                <span className="font-semibold font-mono tracking-widest text-2xl 
+                <span className="font-semibold text-2xl  font-mono tracking-widest 
                   bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
                   SmartAgroHub
                 </span>
@@ -69,10 +77,10 @@ function Navbar({ user, setUser }) {
 
             {isHomePage && (
               <div className="indicator">
-                <div className="p-2 rounded-full hover:bg-base-200 transition-colors">
+                <div onClick={() => navigate("/cartPage")} className="p-2 rounded-full hover:bg-base-200 transition-colors">
                   <ShoppingBagIcon className="size-5" />
                   <span className="badge badge-sm badge-primary indicator-item">
-                    {products.length}
+                    {cart.length}
                   </span>
                 </div>
               </div>

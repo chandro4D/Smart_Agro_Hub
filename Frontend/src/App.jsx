@@ -15,6 +15,7 @@ import Seed from "./pages/ProductsCategory/Seed.jsx";
 import Tools from "./pages/ProductsCategory/Tools.jsx";
 import Feed from "./pages/ProductsCategory/Feed.jsx";
 import RoleBasedDashboard from "./pages/Dashboard/RoleBasedDashboard.jsx";
+import Cart from "./pages/Cart/Cart.jsx";
 
 
 
@@ -40,6 +41,7 @@ function App() {
         <Route path="/Tools" element={<Tools />} />
         <Route path="/Feed" element={<Feed />} />
         <Route path="/dashboard" element={<RoleBasedDashboard />} />
+        <Route path="/cartPage" element={<Cart user={user} />} />
       </Routes>
       <Toaster position="top-center" />
     </div>
