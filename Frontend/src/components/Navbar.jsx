@@ -9,6 +9,7 @@ import { useEffect } from "react";
 function Navbar({ user, setUser }) {
   const { pathname } = useResolvedPath();
   const isHomePage = pathname === "/";
+  const isOurShopPage = pathname === "/shop";
   const navigate = useNavigate();
   const { cart, fetchCart } = useProductStore();
   
@@ -75,7 +76,7 @@ function Navbar({ user, setUser }) {
           <div className="flex items-center gap-4">
             <ThemeSelector />
 
-            {isHomePage && (
+            {(isHomePage || isOurShopPage) && (
               <div className="indicator">
                 <div onClick={() => navigate("/cartPage")} className="p-2 rounded-full hover:bg-base-200 transition-colors">
                   <ShoppingBagIcon className="size-5" />

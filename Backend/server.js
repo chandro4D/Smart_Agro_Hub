@@ -100,6 +100,11 @@ async function initDB() {
         user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
         product_id INT NOT NULL REFERENCES products(id) ON DELETE CASCADE,
         quantity INT NOT NULL DEFAULT 1,
+
+        // name VARCHAR(255) NOT NULL,
+        // image VARCHAR(255) NOT NULL,
+        // price DECIMAL(10, 2) NOT NULL,
+
         added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         UNIQUE (user_id, product_id) -- Prevent duplicate product entries for same user
       )

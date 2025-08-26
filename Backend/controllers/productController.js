@@ -268,7 +268,7 @@ export const createCartItem = async (req, res) => {
 
 // For Get All Cart Items of a Single User
 export const getUserCartItems = async (req, res) => {
-  const { user_id } = req.params; // assuming you're passing user_id in URL params
+  const { user_id } = req.params;
 
   if (!user_id) {
     return res.status(400).json({ success: false, message: "User ID is required" });
@@ -277,16 +277,16 @@ export const getUserCartItems = async (req, res) => {
   try {
     const cartItems = await sql`
       SELECT 
-        c.id AS cart_id, 
-        c.user_id, 
-        c.product_id, 
+        c.id AS cart_id,
         c.quantity,
-        p.name AS product_name, 
-        p.price AS product_price,
-        (p.price * c.quantity) AS total_price
+        c.added_at,
+        p.id AS product_id,
+        p.name AS product_name,
+        p.price,
+        p.image
       FROM cart c
       JOIN products p ON c.product_id = p.id
-      WHERE c.user_id = ${user_id}
+      WHERE c.user_id = ${user_id};
     `;
 
     if (cartItems.length === 0) {
@@ -299,5 +299,6 @@ export const getUserCartItems = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
 
 

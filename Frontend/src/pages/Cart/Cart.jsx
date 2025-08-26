@@ -2,11 +2,14 @@ import { useEffect } from "react";
 import { useProductStore } from "../../store/useProductStore";
 import { Link } from "react-router-dom";
 
-
 const Cart = ({ user }) => {
 
-    const { cart, fetchCart, fetchProducts } = useProductStore();
-    const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+    const { cart, fetchCart } = useProductStore();
+
+    // For Multiple Product Purchase
+    const lineTotal = (item) => Number(item.price) * Number(item.quantity ?? 1);
+    // grand total
+    const totalPrice = cart.reduce((sum, item) => sum + lineTotal(item), 0);
 
     useEffect(() => {
         if (user?.id) {
@@ -15,15 +18,13 @@ const Cart = ({ user }) => {
     }, [user, fetchCart]);
 
     return (
-        <div className="pb-24">
+        <div className="pb-24 mt-10">
             {
                 cart.length > 0 ? <>
-                    <div className="ml-52 rounded-lg h-24 w-[1100px] bg-gradient-to-r from-cyan-500 to-blue-500 mb-20 ">
-                        <h1 className="text-center font-semibold text-white text-4xl pt-5">MY CART</h1>
+                    <div className="ml-44 rounded-lg h-24 w-[1200px] bg-gradient-to-r from-cyan-500 to-blue-500 mb-10 ">
+                        <h1 className="text-center font-semibold text-lime-400 text-4xl pt-5">MY CART</h1>
 
                     </div>
-
-
                     <div className="ml-40">
                         <div className="overflow-x-auto">
                             <table className="table">
@@ -34,38 +35,29 @@ const Cart = ({ user }) => {
                                             #
                                         </th>
                                         <th>PRODUCT NAME</th>
-                                        <th>COMPANY</th>
-                                        <th>PRICE</th>
+                                        <th>PRODUCT IMAGE</th>
+                                        <th>QTY</th>
+                                        <th>UNIT PRICE</th>
+                                        <th>TOTAL PRICE-(SAME ITEM)</th>
                                         <th>DELETE</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {
-                                        cart.map((item, index) => <tr key={item._id}>
-                                            <th>
-                                                {index + 1}
-                                            </th>
-
+                                    {cart.map((item, index) => (
+                                        <tr key={item.cart_id}>
+                                            <th>{index + 1}</th>
+                                            <td>{item.product_name}</td>
                                             <td>
-                                                {item.product}
+                                                <img src={item.image} alt={item.product_name} className="w-16 h-16 object-cover rounded" />
                                             </td>
+                                            <td>{item.quantity}</td>
+                                            <td>{Number(item.price).toFixed(2)} BDT</td>
+                                            <td>{Number(item.price).toFixed(2)} * {item.quantity} = {lineTotal(item).toFixed(2)} BDT</td>
                                             <td>
-                                                {item.company}
+                                                <button className="btn btn-ghost btn-xl bg-red-500 text-xl">Delete</button>
                                             </td>
-                                            <td>{fetchProducts.price}</td>
-
-                                            <th>
-                                                <button
-                                                    
-                                                    className="btn btn-ghost btn-xl bg-red-500 text-xl">
-                                                </button>
-                                            </th>
-                                        </tr>)
-                                    }
-
-
-
-
+                                        </tr>
+                                    ))}
                                 </tbody>
 
 
@@ -74,11 +66,11 @@ const Cart = ({ user }) => {
                     </div>
                     <div>
                         <div className="flex justify-between mx-28 my-10  ">
-                            <h2 className="text-2xl font-semibold">TOTAL ORDERS :{fetchProducts.price} {cart.length}</h2>
+                            <h2 className="text-2xl font-semibold">TOTAL ORDERS : {cart.length}</h2>
                             <div>
                                 {
                                     cart.length ? <>
-                                        <Link to='/payment'><button disabled={!cart.length} className="btn w-[400PX]  bg-gradient-to-r from-cyan-500 to-blue-500 text-white sm:btn-sm md:btn-md ">CHECKOUT</button></Link>
+                                        <Link to='/payment'><button disabled={!cart.length} className="btn w-[400PX] ml-32  bg-gradient-to-r from-cyan-500 to-blue-500 text-white sm:btn-sm md:btn-md ">CHECKOUT</button></Link>
                                     </>
                                         :
                                         <>
@@ -87,7 +79,7 @@ const Cart = ({ user }) => {
                                 }
                             </div>
 
-                            <h2 className="text-2xl font-semibold">TOTAL PRICE : {parseFloat(totalPrice).toFixed(2)} BDT </h2>
+                            <h2 className="text-2xl font-semibold">TOTAL PRICE : {totalPrice.toFixed(2)} BDT </h2>
 
 
                         </div>
@@ -98,7 +90,6 @@ const Cart = ({ user }) => {
                     <>
                         <div className="pt-40  mb-10">
                             <h3 className="text-center font-semibold text-pink-600 text-3xl">YOU  HAVEN`T  ADDED  ANYTHING TO THE CART  YET</h3>
-
                         </div>
                     </>
             }
