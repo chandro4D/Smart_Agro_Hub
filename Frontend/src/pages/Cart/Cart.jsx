@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Cart = ({ user }) => {
 
-    const { cart, fetchCart } = useProductStore();
+    const { cart, fetchCart, removeCartItem } = useProductStore();
 
     // For Multiple Product Purchase
     const lineTotal = (item) => Number(item.price) * Number(item.quantity ?? 1);
@@ -54,7 +54,9 @@ const Cart = ({ user }) => {
                                             <td>{Number(item.price).toFixed(2)} BDT</td>
                                             <td>{Number(item.price).toFixed(2)} * {item.quantity} = {lineTotal(item).toFixed(2)} BDT</td>
                                             <td>
-                                                <button className="btn btn-ghost btn-xl bg-red-500 text-xl">Delete</button>
+                                                <button onClick={() =>
+                                                    removeCartItem({ user_id: user.id, product_id: item.product_id })
+                                                } className="btn btn-ghost btn-xl bg-red-500 text-xl">Delete</button>
                                             </td>
                                         </tr>
                                     ))}

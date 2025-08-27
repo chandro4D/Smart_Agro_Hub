@@ -3,6 +3,9 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+
+
+
 //For Get All Products
 export const getProducts = async (req, res) => {
   try {
@@ -242,6 +245,7 @@ export const deleteProduct = async (req, res) => {
   }
 };
 
+
 // For Create Cart Item
 export const createCartItem = async (req, res) => {
   const { user_id, product_id, quantity } = req.body;
@@ -266,6 +270,26 @@ export const createCartItem = async (req, res) => {
   }
 };
 
+// For Deleting Cart Item
+export const deleteCartItem = async (req, res) => {
+  try {
+    const { user_id, product_id } = req.body;
+
+    if (!user_id || !product_id) {
+      return res.status(400).json({ error: "user_id and product_id are required" });
+    }
+
+    await sql`
+      DELETE FROM cart 
+      WHERE user_id = ${user_id} AND product_id = ${product_id};
+    `;
+
+    res.json({ message: "Cart item removed successfully" });
+  } catch (error) {
+    console.error("Error deleting cart item:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 // For Get All Cart Items of a Single User
 export const getUserCartItems = async (req, res) => {
   const { user_id } = req.params;

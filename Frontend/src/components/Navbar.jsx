@@ -57,6 +57,10 @@ function Navbar({ user, setUser }) {
               bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
               <Link to="/shop">OurShop</Link>
             </h3>
+            <h3 className="btn btn-neutral btn-dash mt-3 mr-5 font-semibold font-mono tracking-widest text-2xl 
+              bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+              <Link to="/AgriInfo">AGRO INFO</Link>
+            </h3>
 
             {/* Show Login/Signup only if user is NOT logged in */}
             {!user && (

@@ -19,7 +19,7 @@ const CategoryCard = () => {
                     <p className="py-3 text-center font-semibold font-mono tracking-widest text-2xl 
                     bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">ALL KINDS OF SEED</p>
                     <div className=" h-[250px] mr-5  rounded-xl bg-gradient-to-r from-indigo-500  to-pink-500">
-                        <img className="w-[629px]  h-[250px] rounded-xl" src="https://ds.rokomari.store/rokomari110/ProductNew20190903/130X186/Mix_Color_hybrid_Capsicum_10pcs_Seeds-Sobuj_Dhaka_Garden_Shop-bb47f-280921.png" alt="" />
+                        <img className="w-[629px]  h-[250px] rounded-xl" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhLZdwLL18thkAAX4paPU47Y0SFumo7A0U8w&s" alt="" />
                     </div>
                 </div>
             </Link>

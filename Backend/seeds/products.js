@@ -6,7 +6,7 @@ const SAMPLE_PRODUCTS = [
 
 async function seedDatabase() {
   try {
-    // first, clear existing data
+    
     await sql`TRUNCATE TABLE products RESTART IDENTITY`;
 
     // insert all products

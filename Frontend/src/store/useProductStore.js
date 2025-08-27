@@ -32,7 +32,7 @@ export const useProductStore = create((set, get) => ({
   addToCart: async ({ user_id, product_id, quantity = 1 }) => {
     set({ cartLoading: true });
     try {
-       await axios.post(`${BASE_URL}/api/products/cart`, { user_id, product_id, quantity });
+      await axios.post(`${BASE_URL}/api/products/cart`, { user_id, product_id, quantity });
       // optionally refetch cart or update locally
       await get().fetchCart(user_id);
       toast.success("Item added to cart");
@@ -56,16 +56,20 @@ export const useProductStore = create((set, get) => ({
       set({ cartLoading: false });
     }
   },
-    
+
   // remove item from cart
-  removeCartItem: async ({ user_id, product_id }) => {
+  removeCartItem: async ({ user_id, product_id, id }) => {
     set({ cartLoading: true });
     try {
-      await axios.delete(`${BASE_URL}/api/products/cart`, { data: { user_id, product_id } });
+      await axios.delete(`${BASE_URL}/api/products/cart/${id}`, {
+        data: { user_id, product_id }
+      });
+
       await get().fetchCart(user_id);
       toast.success("Item removed from cart");
     } catch (err) {
       console.error(err);
+      console.log("DELETE /cart called with:", { user_id, product_id });
       toast.error("Failed to remove item");
     } finally {
       set({ cartLoading: false });
@@ -141,7 +145,7 @@ export const useProductStore = create((set, get) => ({
       set({ loading: false });
     }
   },
-  
+
   fetchFeed: async () => {
     set({ loading: true });
     try {

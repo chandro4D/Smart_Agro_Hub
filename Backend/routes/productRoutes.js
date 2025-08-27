@@ -12,10 +12,11 @@ import {
   createUser,
   login,
   createCartItem,
-  getUserCartItems
-} from "../controllers/productController.js"; // ✅ remove protect from here
+  getUserCartItems,
+  deleteCartItem
+} from "../controllers/productController.js"; 
 
-import { protect } from "../middleware/authMiddleware.js"; // ✅ keep this one
+import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -33,6 +34,7 @@ router.post("/users", createUser);
 router.post("/login", login);
 router.post("/cart", createCartItem);
 router.get("/cart/:user_id", getUserCartItems);
+router.delete("/cart/:id", deleteCartItem);
 
 // Protected route
 router.get("/protected", protect, (req, res) => {
