@@ -8,7 +8,7 @@ import CategoryCard from "../components/CategoryCard.jsx";
 
 
 function HomePage() {
-  const {  fetchProducts } = useProductStore();
+  const { fetchProducts } = useProductStore();
 
   useEffect(() => {
     fetchProducts();
@@ -17,16 +17,20 @@ function HomePage() {
   return (
     <div >
       <div className="mt-14 mb-10">
-        <h1 className='text-center text-sky-500 mb-2 text-4xl font-bold'>WELCOME TO SMART AGRO HUB</h1>
+        <h1 className='mb-5 text-center font-semibold text-5xl  font-mono tracking-widest 
+                  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>WELCOME TO SMART AGRO HUB</h1>
 
-        <h1 className='text-center text-sky-500 text-4xl font-bold'>SEE SOME PRODUCTS</h1>
+        <h1 className='text-center font-semibold text-5xl  font-mono tracking-widest 
+                  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>SEE SOME PRODUCTS</h1>
       </div>
       <Slider />
-      <h1 className='text-center text-sky-500 text-4xl mt-207 mb-14 font-bold'>ALL CATEGORY OF PRODUCTS HERE</h1>
+      <h1 className='text-center font-semibold text-5xl  font-mono tracking-widest 
+                  bg-clip-text text-transparent bg-gradient-to-r from-primary mb-10 to-secondary'>ALL CATEGORY OF PRODUCTS HERE</h1>
       <CategoryCard></CategoryCard>
       {/* ---------------------------------FAQ-------------------- */}
       <div>
-        <h1 className='text-center text-sky-500 text-4xl font-bold'>SOME FREQUENTLY ASKED QUESTION</h1>
+        <h1 className='text-center font-semibold text-5xl mb-10 mt-16 font-mono tracking-widest 
+                  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>SOME FREQUENTLY ASKED QUESTION</h1>
       </div>
       <br />
       <div className="join join-vertical ml-[140px]  w-[1200px] mb-[50px]">
@@ -77,7 +81,7 @@ function HomePage() {
         </div>
       </div>
 
-     
+
       <Footer></Footer>
     </div>
   );
