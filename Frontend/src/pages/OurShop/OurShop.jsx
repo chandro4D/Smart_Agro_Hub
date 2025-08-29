@@ -14,7 +14,8 @@ function OurShop() {
     <div>
       <div>
         <div>
-          <h1 className='text-center text-sky-500 text-4xl font-bold pt-20 mb-10'>SEE ALL PRODUCTS HERE</h1>
+          <h1 className='text-center mb-10 mt-16 font-semibold text-5xl  font-mono tracking-widest 
+                  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>SEE ALL PRODUCTS HERE</h1>
         </div>
         {loading ? (
           <div className="flex justify-center items-center h-64">

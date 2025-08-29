@@ -1,6 +1,14 @@
 import { User, ShoppingCart, Settings, LogOut, Heart, Bell, Wallet } from "lucide-react";
+import { useEffect } from "react";
 
 const UserDashboard = () => {
+  const {  fetchCart } = useProductStore();
+  // Fetch cart when user is logged in
+  useEffect(() => {
+    if (user?.id) {
+      fetchCart(user.id);
+    }
+  }, [user, fetchCart]);
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-8">
       <div className="max-w-7xl mx-auto">
