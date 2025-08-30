@@ -1,12 +1,12 @@
 import { Package, DollarSign, Users, BarChart3, PlusCircle, Settings, LogOut } from "lucide-react";
 
-const SellerDashboard = () => {
+const SellerDashboard = ({user}) => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-purple-50 to-purple-100 p-8">
             <div className="max-w-7xl mx-auto">
                 {/* Welcome Section */}
                 <div className="mb-10 text-center">
-                    <h1 className="text-4xl font-extrabold text-gray-800">Welcome, Seller 🛍️</h1>
+                    <h1 className="text-4xl font-extrabold text-gray-800">Welcome, {user.name || user.email}(Seller) 🛍️</h1>
                     <p className="text-gray-600 mt-2 text-lg">Manage your store, products, and sales all in one place</p>
                 </div>
 

@@ -2,7 +2,7 @@ import { UserIcon } from "lucide-react";
 
 const Footer = () => {
     return (
-        <div className="pb-10">
+        <div className="">
             <footer className="footer bg-center bg-full bg-cover text-green-500 bg-no-repeat  bg-[url('https://png.pngtree.com/thumb_back/fh260/back_our/20190625/ourmid/pngtree-blue-pattern-vouchers-background-image_262052.jpg')]   h-[350px]   ">
 
                 <div className="flex  ">
@@ -47,7 +47,7 @@ const Footer = () => {
 
 
             </footer>
-            <footer className="footer footer-center p-4 bg-base-300 text-base-content">
+            <footer className="footer footer-center h-12 bg-base-300 text-base-content">
                 <aside>
                     <p>Copyright © 2024 - All right reserved by <i>SmartAgroHub</i> Industries Ltd</p>
                 </aside>

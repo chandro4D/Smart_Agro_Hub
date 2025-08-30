@@ -21,11 +21,11 @@ const RoleBasedDashboard = () => {
 
   switch (user.user_role) {
     case "admin":
-      return <AdminDashboard />;
+      return <AdminDashboard user={user} />;
     case "seller":
-      return <SellerDashboard />;
+      return <SellerDashboard user={user} />;
     case "user":
-      return <UserDashboard />;
+      return <UserDashboard user={user} />;
     default:
       return <p>Invalid role</p>;
   }

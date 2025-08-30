@@ -16,11 +16,11 @@ function HomePage() {
 
   return (
     <div >
-      <div className="mt-14 mb-10">
+      <div className="mt-14 ">
         <h1 className='mb-5 text-center font-semibold text-5xl  font-mono tracking-widest 
                   bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>WELCOME TO SMART AGRO HUB</h1>
 
-        <h1 className='text-center font-semibold text-5xl  font-mono tracking-widest 
+        <h1 className='text-center font-semibold text-5xl mb-7 font-mono tracking-widest 
                   bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>SEE SOME PRODUCTS</h1>
       </div>
       <Slider />
@@ -29,11 +29,11 @@ function HomePage() {
       <CategoryCard></CategoryCard>
       {/* ---------------------------------FAQ-------------------- */}
       <div>
-        <h1 className='text-center font-semibold text-5xl mb-10 mt-16 font-mono tracking-widest 
+        <h1 className='text-center font-semibold text-5xl mb-10 mt-32 font-mono tracking-widest 
                   bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>SOME FREQUENTLY ASKED QUESTION</h1>
       </div>
       <br />
-      <div className="join join-vertical ml-[140px]  w-[1200px] mb-[50px]">
+      <div className="join join-vertical ml-[140px] mb-20  w-[1200px] ">
         <div className="collapse collapse-arrow join-item border border-base-300">
           <input type="radio" name="my-accordion-4" defaultChecked />
           <div className="collapse-title text-xl font-medium">

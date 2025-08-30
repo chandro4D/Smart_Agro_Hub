@@ -41,7 +41,7 @@ function App() {
         <Route path="/seeds" element={<Seed />} />
         <Route path="/Tools" element={<Tools />} />
         <Route path="/Feed" element={<Feed />} />
-        <Route path="/dashboard" element={<RoleBasedDashboard />} />
+        <Route path="/dashboard" element={<RoleBasedDashboard user={user} />} />
         <Route path="/cartPage" element={<Cart user={user} />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/AgriInfo" element={<AgriInfo />} />

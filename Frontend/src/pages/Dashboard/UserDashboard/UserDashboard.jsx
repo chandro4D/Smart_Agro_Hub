@@ -1,7 +1,8 @@
 import { User, ShoppingCart, Settings, LogOut, Heart, Bell, Wallet } from "lucide-react";
 import { useEffect } from "react";
+import { useProductStore } from "../../../store/useProductStore";
 
-const UserDashboard = () => {
+const UserDashboard = ({ user }) => {
   const {  fetchCart } = useProductStore();
   // Fetch cart when user is logged in
   useEffect(() => {
@@ -14,20 +15,20 @@ const UserDashboard = () => {
       <div className="max-w-7xl mx-auto">
         {/* Top Welcome Section */}
         <div className="mb-10 text-center">
-          <h1 className="text-4xl font-extrabold text-gray-800">Welcome Back, Alex 👋</h1>
+          <h1 className="text-4xl font-extrabold text-gray-800">Welcome Back, {user.name || user.email} 👋</h1>
           <p className="text-gray-600 mt-2 text-lg">Here’s what’s happening in your account today</p>
         </div>
 
         {/* Profile Card */}
         <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col md:flex-row items-center md:items-start gap-6 mb-10">
           <img
-            src="https://i.pravatar.cc/120"
+            src={user.image || "https://i.pravatar.cc/120"}
             alt="User Avatar"
             className="w-28 h-28 rounded-full border-4 border-blue-200"
           />
           <div className="text-center md:text-left">
-            <h2 className="text-2xl font-bold text-gray-800">Alex Johnson</h2>
-            <p className="text-gray-600">alex.johnson@example.com</p>
+            <h2 className="text-2xl font-bold text-gray-800">{user.name || user.email}</h2>
+            <p className="text-gray-600">{user.email}</p>
             <div className="mt-4 flex flex-wrap justify-center md:justify-start gap-4">
               <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
                 Premium Member
