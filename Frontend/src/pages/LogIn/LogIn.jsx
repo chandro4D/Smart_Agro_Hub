@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
+
 const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:3000" : "";
 
 const LogIn = ({ setUser }) => {
@@ -46,7 +47,7 @@ const LogIn = ({ setUser }) => {
 
   return (
     <div className="pt-10 pb-5">
-      
+
       <div className="lg:w-[500px] sm:w-[350px] lg:h-[600px] sm:h-[500px] bg-lime-100 lg:ml-[500px] sm:ml-0 mb-10 rounded-xl">
         <div className="pt-12">
           <h2 className="text-center text-2xl font-bold text-pink-400 mb-2">
@@ -99,6 +100,7 @@ const LogIn = ({ setUser }) => {
             >
               LOGIN
             </button>
+            
           </div>
         </form>
 
