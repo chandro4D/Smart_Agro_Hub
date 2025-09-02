@@ -18,6 +18,7 @@ import RoleBasedDashboard from "./pages/Dashboard/RoleBasedDashboard.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
 import Payment from "./pages/Payment/Payment.jsx";
 import AgriInfo from "./pages/AgriInfo/AgriInfo.jsx"
+import UpdateProfile from "./pages/UpdateProfile/UpdateProfile.jsx";
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Route path="/cartPage" element={<Cart user={user} />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/AgriInfo" element={<AgriInfo />} />
+        <Route path="/updateProfile" element={<UpdateProfile />} />
       </Routes>
       <Toaster position="top-center" />
     </div>
