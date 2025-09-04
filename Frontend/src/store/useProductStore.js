@@ -189,6 +189,7 @@ export const useProductStore = create((set, get) => ({
       set({ loading: false });
     }
   },
+  // Update product
   updateProduct: async (id) => {
     set({ loading: true });
     try {
@@ -199,6 +200,21 @@ export const useProductStore = create((set, get) => ({
     } catch (error) {
       toast.error("Something went wrong");
       console.log("Error in updateProduct function", error);
+    } finally {
+      set({ loading: false });
+    }
+  },
+  // Update User Profile
+  updateProfile: async (id) => {
+    set({ loading: true });
+    try {
+      const { formData } = get();
+      const response = await axios.put(`${BASE_URL}/api/dashboard/updateProfile/${id}`, formData);
+      set({ currentProduct: response.data.data });
+      toast.success("Profile updated successfully");
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.log("Error in updateProfile function", error);
     } finally {
       set({ loading: false });
     }

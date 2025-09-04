@@ -46,7 +46,7 @@ function App() {
         <Route path="/cartPage" element={<Cart user={user} />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/AgriInfo" element={<AgriInfo />} />
-        <Route path="/updateProfile" element={<UpdateProfile />} />
+        <Route path="/updateProfile" element={<UpdateProfile user={user} />} />
       </Routes>
       <Toaster position="top-center" />
     </div>
