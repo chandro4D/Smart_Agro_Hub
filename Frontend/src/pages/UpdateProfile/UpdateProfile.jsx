@@ -1,5 +1,6 @@
-
+import { useProductStore } from "../../store/useProductStore";
 const UpdateProfile = ({ user }) => {
+    const { updateProfile } = useProductStore();
     return (
         <div className="flex justify-center gap-5 mx-auto pt-32 pb-36">
 
@@ -25,7 +26,9 @@ const UpdateProfile = ({ user }) => {
                     </div>
                     <br />
                     <div className=" lg:w-[400px] sm:w-[300px]  h-[50px] bg-lime-400 rounded-2xl">
-                        <button className="w-full h-full text-white"> UPDATE</button>
+                        <button onClick={() => updateProfile(user.id)} className="w-full h-full text-white">
+                                UPDATE
+                        </button>
                     </div>
                 </form>
 
