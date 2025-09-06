@@ -204,21 +204,46 @@ export const useProductStore = create((set, get) => ({
       set({ loading: false });
     }
   },
+
   // Update User Profile
   updateProfile: async (id) => {
     set({ loading: true });
     try {
       const { formData } = get();
-      const response = await axios.put(`${BASE_URL}/api/dashboard/updateProfile/${id}`, formData);
+      const token = localStorage.getItem("token"); // or however you store JWT
+
+      if (!token) {
+        toast.error("You are not logged in");
+        set({ loading: false });
+        return;
+      }
+
+      const response = await axios.put(
+        `${BASE_URL}/api/dashboard/updateProfile/${id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Send token
+          },
+          withCredentials: true, // If using cookies
+        }
+      );
+
       set({ currentProduct: response.data.data });
       toast.success("Profile updated successfully");
     } catch (error) {
-      toast.error("Something went wrong");
-      console.log("Error in updateProfile function", error);
+      console.error("Error in updateProfile function", error);
+      if (error.response?.status === 401) {
+        toast.error("Unauthorized: Please log in again.");
+      } else {
+        toast.error("Something went wrong");
+      }
     } finally {
       set({ loading: false });
     }
   },
+
+
 }));
 
 
