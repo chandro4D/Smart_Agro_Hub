@@ -8,6 +8,7 @@ const router = express.Router();
 router.get("/admin", protect, verifyRole(["admin"]), adminDashboard);
 router.get("/seller", protect, verifyRole(["seller"]), sellerDashboard);
 router.get("/user", protect, verifyRole(["user"]), userDashboard);
-router.put("/updateProfile/:id", protect, updateProfile);
+router.put("/updateProfile/:id", authMiddleware, updateProfile);
+
 
 export default router;

@@ -204,44 +204,46 @@ export const useProductStore = create((set, get) => ({
       set({ loading: false });
     }
   },
+// Update User Profile
+updateProfile: async (id, updatedData) => {
+  set({ loading: true });
+  try {
+    const token = localStorage.getItem("token"); // or however you store JWT
 
-  // Update User Profile
-  updateProfile: async (id) => {
-    set({ loading: true });
-    try {
-      const { formData } = get();
-      const token = localStorage.getItem("token"); // or however you store JWT
-
-      if (!token) {
-        toast.error("You are not logged in");
-        set({ loading: false });
-        return;
-      }
-
-      const response = await axios.put(
-        `${BASE_URL}/api/dashboard/updateProfile/${id}`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Send token
-          },
-          withCredentials: true, // If using cookies
-        }
-      );
-
-      set({ currentProduct: response.data.data });
-      toast.success("Profile updated successfully");
-    } catch (error) {
-      console.error("Error in updateProfile function", error);
-      if (error.response?.status === 401) {
-        toast.error("Unauthorized: Please log in again.");
-      } else {
-        toast.error("Something went wrong");
-      }
-    } finally {
+    if (!token) {
+      toast.error("You are not logged in");
       set({ loading: false });
+      return;
     }
-  },
+
+    const response = await axios.put(
+      `${BASE_URL}/api/dashboard/updateProfile/${id}`,
+      updatedData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // Send token
+        },
+        withCredentials: true, // If using cookies
+      }
+    );
+
+    toast.success("Profile updated successfully");
+
+    // Update user info in Zustand store
+    set((state) => ({
+      currentUser: response.data.data,
+    }));
+  } catch (error) {
+    console.error("Error in updateProfile function", error);
+    if (error.response?.status === 401) {
+      toast.error("Unauthorized: Please log in again.");
+    } else {
+      toast.error("Something went wrong");
+    }
+  } finally {
+    set({ loading: false });
+  }
+},
 
 
 }));
