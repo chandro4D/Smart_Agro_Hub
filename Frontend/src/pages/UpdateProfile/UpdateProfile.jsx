@@ -21,14 +21,17 @@ const UpdateProfile = ({ user }) => {
 
     return (
         <div className="flex justify-center gap-5 mx-auto pt-32 pb-36">
-            <div className="lg:w-[650px] mr-8 pb-10 sm:w-[400px] lg:h-[400px] sm:h-[350px] bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg">
-                <h2 className="text-center text-3xl font-bold text-emerald-100 pt-10">
+            <div className="lg:w-[650px] mr-8 pb-10 sm:w-[400px] lg:h-[420px] sm:h-[350px] bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg">
+                <h2 className="text-center font-semibold text-4xl  font-mono tracking-widest 
+                  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary pt-10">
                     YOUR PROFILE
                 </h2>
-                <h2 className="text-center text-2xl font-semibold text-sky-100 pt-4">
+                <h2 className="text-center font-semibold text-2xl  font-mono tracking-widest 
+                  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary pt-4">
                     Your Name: {user.name || "Please Provide Your Name"}
                 </h2>
-                <h2 className="text-center text-2xl font-semibold text-sky-100 pt-4">
+                <h2 className="text-center font-semibold text-2xl  font-mono tracking-widest 
+                  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary pt-4">
                     Your Email: {user.email || "Please Provide Your Email"}
                 </h2>
                 <h3 className="lg:ml-[130px] sm:ml-0 pt-5 pb-5 rounded-lg">
@@ -43,13 +46,14 @@ const UpdateProfile = ({ user }) => {
                 </h3>
             </div>
 
-            <div className="lg:w-[650px] lg:h-[400px] sm:w-[400px] bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg">
-                <h2 className="text-center text-3xl font-bold text-emerald-100 pt-8">
+            <div className="lg:w-[650px] lg:h-[420px] sm:w-[400px] bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg">
+                <h2 className="text-center font-semibold text-4xl  font-mono tracking-widest 
+                  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary pt-8">
                     UPDATE YOUR PROFILE
                 </h2>
                 <form
                     onSubmit={handleSubmit}
-                    className="lg:ml-[130px] sm:ml-0 mt-7"
+                    className="lg:ml-[130px] sm:ml-0 mt-10"
                 >
                     <div className="lg:w-[400px] sm:w-[300px] h-[50px]">
                         <input
