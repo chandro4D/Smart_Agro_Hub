@@ -21,7 +21,7 @@ const UpdateProfile = ({ user }) => {
 
     return (
         <div className="flex justify-center gap-5 mx-auto pt-32 pb-36">
-            <div className="lg:w-[650px] mr-8 pb-10 sm:w-[400px] lg:h-[420px] sm:h-[350px] bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg">
+            <div className="lg:w-[650px] mr-8 pb-10 sm:w-[400px] lg:h-[420px] sm:h-[350px]  rounded-lg" style={{ backgroundImage: "url('')" }}>
                 <h2 className="text-center font-semibold text-4xl  font-mono tracking-widest 
                   bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary pt-10">
                     YOUR PROFILE
