@@ -4,7 +4,8 @@ function AgriInfo() {
   return (
     <div className="min-h-screen pt-14 bg-gradient-to-b from-green-50 to-green-100">
       {/* Title */}
-      <h1 className="text-5xl font-extrabold text-center font-mono mt-10 text-green-800">
+      <h1 className="text-center font-semibold text-5xl  font-mono tracking-widest 
+                  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary mt-10 ">
         Learn About Agriculture
       </h1>
       <p className="text-center text-lg mt-4 text-gray-600">
@@ -22,7 +23,8 @@ function AgriInfo() {
 
       {/* Agricultural News Section */}
       <section className="mt-16 px-6 md:px-20">
-        <h2 className="text-3xl font-bold text-green-700 text-center mb-8">
+        <h2 className="text-center font-semibold text-4xl  font-mono tracking-widest 
+                  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary mb-8">
           🌾 Latest Agricultural News
         </h2>
 
