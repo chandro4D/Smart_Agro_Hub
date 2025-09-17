@@ -89,7 +89,8 @@ function AgriInfo() {
 
       {/* Essential Content Section */}
       <section className="mt-20 px-6 md:px-32">
-        <h2 className="text-3xl font-bold text-green-700 text-center mb-8">
+        <h2 className="text-center font-semibold text-4xl  font-mono tracking-widest 
+                  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary mb-8">
           🌱 Essential Agriculture Practices
         </h2>
         <ul className="list-disc text-lg text-gray-700 space-y-3 pl-6">
@@ -103,7 +104,8 @@ function AgriInfo() {
 
       {/* Benefits Section */}
       <section className="mt-20 px-6 md:px-20">
-        <h2 className="text-3xl font-bold text-green-700 text-center mb-8">
+        <h2 className="text-center font-semibold text-4xl  font-mono tracking-widest 
+                  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary mb-8">
           🌍 Benefits of Modern Agriculture
         </h2>
         <div className="grid md:grid-cols-3 gap-8 text-center">
@@ -124,7 +126,8 @@ function AgriInfo() {
 
       {/* Quick Facts Section */}
       <section className="mt-20 px-6 md:px-20">
-        <h2 className="text-3xl font-bold text-green-700 text-center mb-8">
+        <h2 className="text-center font-semibold text-4xl  font-mono tracking-widest 
+                  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary mb-8">
           📊 Quick Facts About Agriculture
         </h2>
         <div className="grid md:grid-cols-4 gap-6 text-center">
