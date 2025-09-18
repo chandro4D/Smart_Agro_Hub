@@ -117,7 +117,7 @@ function AgriInfo() {
             <h3 className="text-xl font-semibold text-green-700 mb-3">Sustainability</h3>
             <p className="text-gray-600">Eco-friendly methods reduce pollution and protect natural resources.</p>
           </div>
-          <div className="p-6 bg-white rounded-xl shadow-lg border border-green-200">
+          <div className="p-5 bg-white rounded-xl shadow-lg border border-green-200">
             <h3 className="text-xl font-semibold text-green-700 mb-3">Better Quality</h3>
             <p className="text-gray-600">Consumers get healthier, chemical-free, and nutritious food.</p>
           </div>
